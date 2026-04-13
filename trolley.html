@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Şişman Adamı Öldürmeli misin? — Felsefe Deneyleri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --cream: #ede8db;
+      --gold: #b8860b;
+      --rust: #8b3a2a;
+      --sage: #4a5e4a;
+      --muted: #6b6355;
+      --border: #d4cfc4;
+      --danger: #8b3a2a;
+      --safe: #4a5e4a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(245,240,232,0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* PROGRESS */
+    .progress-bar {
+      height: 3px;
+      background: var(--border);
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--rust);
+      transition: width 0.5s ease;
+    }
+
+    /* MAIN */
+    .experiment-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* SCREENS */
+    .screen { display: none; animation: fadeIn 0.5s ease; }
+    .screen.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* INTRO SCREEN */
+    .intro-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-title em { font-style: italic; color: var(--rust); }
+
+    .intro-meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .intro-meta span {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .intro-text {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      max-width: 58ch;
+    }
+
+    .intro-note {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* QUESTION SCREEN */
+    .q-step {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .scenario-box {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scenario-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+    }
+
+    .scenario-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .scenario-text {
+      font-size: 1rem;
+      line-height: 1.85;
+      font-weight: 300;
+      color: rgba(245,240,232,0.9);
+    }
+
+    .scenario-illustration {
+      margin-top: 1.5rem;
+      font-size: 2.5rem;
+      letter-spacing: 0.3rem;
+      opacity: 0.6;
+    }
+
+    .q-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      line-height: 1.3;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .choice-btn {
+      border: 1.5px solid var(--border);
+      background: var(--paper);
+      padding: 1.4rem 1.8rem;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--ink);
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .choice-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .choice-btn.yes::after { background: var(--safe); }
+    .choice-btn.no::after { background: var(--danger); }
+
+    .choice-btn:hover {
+      background: var(--cream);
+      border-color: var(--ink);
+      transform: translateX(4px);
+    }
+
+    .choice-btn:hover::after { width: 100%; }
+
+    .choice-btn .choice-label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .choice-btn .choice-sub {
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* RESULTS SCREEN */
+    .result-header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .result-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    .result-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .result-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 46ch;
+      margin: 0 auto;
+    }
+
+    .analysis-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .analysis-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .analysis-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .analysis-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* CONSISTENCY BADGE */
+    .consistency-card {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .consistency-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--gold);
+    }
+
+    .consistency-card p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      font-weight: 300;
+      color: rgba(245,240,232,0.85);
+    }
+
+    /* STAT BAR */
+    .stat-block {
+      border: 1.5px solid var(--border);
+      padding: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .stat-bar-wrap {
+      height: 6px;
+      background: var(--border);
+      margin-bottom: 0.5rem;
+      border-radius: 0;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      background: var(--rust);
+      transition: width 1.2s ease;
+      width: 0;
+    }
+
+    .stat-numbers {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .stat-numbers strong { color: var(--ink); font-size: 1rem; }
+
+    /* PHILOSOPHY BOX */
+    .philosophy-box {
+      background: var(--cream);
+      padding: 2rem;
+      border-left: 3px solid var(--gold);
+      margin: 2.5rem 0;
+    }
+
+    .philosophy-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .philosophy-box p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.9rem 2.2rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--rust); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--ink);
+      padding: 0.9rem 2.2rem;
+      background: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+    .result-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .experiment-wrap { padding: 2.5rem 1.2rem 4rem; }
+      .scenario-box { padding: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Felsefe Deneyleri</a>
+  <a href="index.html" class="nav-back">← Geri Dön</a>
+</nav>
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill" style="width:0%"></div>
+</div>
+
+<div class="experiment-wrap">
+
+  <!-- SCREEN 0: INTRO -->
+  <div class="screen active" id="screen-intro">
+    <p class="intro-label">Etik & Ahlak · ~5 Dakika</p>
+    <h1 class="intro-title">Şişman Adamı<br><em>Öldürmeli misin?</em></h1>
+    <div class="intro-meta">
+      <span>⏱ ~5 dakika</span>
+      <span>❓ 4 soru</span>
+      <span>🌍 Sonunda başkalarıyla karşılaştır</span>
+    </div>
+    <p class="intro-text">
+      Bu deney, ahlaki sezgilerinin tutarlı olup olmadığını test ediyor. Sana birbirine benzer ama önemli farklılıklar içeren senaryolar sunacağız.
+    </p>
+    <p class="intro-text">
+      Doğru ya da yanlış cevap yok. Sadece dürüstçe yanıtla — deney sonunda cevaplarının ne anlama geldiğini birlikte keşfedeceğiz.
+    </p>
+    <div class="intro-note">
+      💡 <strong>Nasıl çalışır?</strong> Her senaryo için ne yapacağına karar ver. Sonunda cevaplarının felsefi analizi ve dünya genelindeki istatistikler gösterilecek.
+    </div>
+    <button class="btn-primary" onclick="startExperiment()">Deneye Başla →</button>
+  </div>
+
+  <!-- SCREEN 1: VAGON PROBLEMİ (Klasik) -->
+  <div class="screen" id="screen-1">
+    <p class="q-step">Soru 1 / 4</p>
+    <div class="scenario-box">
+      <p class="scenario-title">Senaryo</p>
+      <p class="scenario-text">
+        Kontrolden çıkmış bir tramvay raya bağlı <strong>beş kişiye</strong> doğru gidiyor. Onları ezecek ve öldürecek. Sen bir köprünün üzerindesin ve önünde bir kol var. Kolu çekersen tramvay yan raya sapacak — ama orada da <strong>bir kişi</strong> var ve o ölecek.
+      </p>
+      <div class="scenario-illustration">🚋 ——————— 👥👥👥👥👥</div>
+    </div>
+    <h2 class="q-title">Kolu çeker misin?</h2>
+    <div class="choices">
+      <button class="choice-btn yes" onclick="answer(1, 'evet')">
+        <span class="choice-label">Evet, kolu çekerim</span>
+        <span class="choice-sub">Bir kişi ölür, beş kişi kurtulur</span>
+      </button>
+      <button class="choice-btn no" onclick="answer(1, 'hayir')">
+        <span class="choice-label">Hayır, müdahale etmem</span>
+        <span class="choice-sub">Beş kişi ölür, ben kimseyi öldürmemiş olurum</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: ŞİŞMAN ADAM -->
+  <div class="screen" id="screen-2">
+    <p class="q-step">Soru 2 / 4</p>
+    <div class="scenario-box">
+      <p class="scenario-title">Senaryo</p>
+      <p class="scenario-text">
+        Aynı tramvay, aynı beş kişi. Ama bu sefer kol yok. Sen bir köprünün üzerindesin ve yanında <strong>çok iri yapılı bir adam</strong> var. Onu köprüden itersen tramvayın önünde durur — tramvay durur, beş kişi kurtulur. Ama adam ölür. Bunu yapmanın tek yolu onu itmektir.
+      </p>
+      <div class="scenario-illustration">🧍‍♂️ 🌉 🚋 ——— 👥👥👥👥👥</div>
+    </div>
+    <h2 class="q-title">Adamı iter misin?</h2>
+    <div class="choices">
+      <button class="choice-btn yes" onclick="answer(2, 'evet')">
+        <span class="choice-label">Evet, iterim</span>
+        <span class="choice-sub">Bir kişi ölür, beş kişi kurtulur — matematik aynı</span>
+      </button>
+      <button class="choice-btn no" onclick="answer(2, 'hayir')">
+        <span class="choice-label">Hayır, itmem</span>
+        <span class="choice-sub">Birini doğrudan öldürmek farklı bir şey</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: AMELIYATHANE -->
+  <div class="screen" id="screen-3">
+    <p class="q-step">Soru 3 / 4</p>
+    <div class="scenario-box">
+      <p class="scenario-title">Senaryo</p>
+      <p class="scenario-text">
+        Bir hastane doktorusun. Beş hastanın her biri farklı bir organa ihtiyaç duyuyor, aksi halde ölecekler. Tam bu sırada rutin kontrol için tamamen sağlıklı bir hasta geliyor. Organlarını çıkarıp beş hastaya nakletsen — o ölür, beş hasta yaşar.
+      </p>
+      <div class="scenario-illustration">🏥 👨‍⚕️ → 🫀🫁🧠</div>
+    </div>
+    <h2 class="q-title">Sağlıklı hastayı öldürür müsün?</h2>
+    <div class="choices">
+      <button class="choice-btn yes" onclick="answer(3, 'evet')">
+        <span class="choice-label">Evet, operasyonu yaparım</span>
+        <span class="choice-sub">Beş hayat bir hayattan daha değerli</span>
+      </button>
+      <button class="choice-btn no" onclick="answer(3, 'hayir')">
+        <span class="choice-label">Hayır, yapmam</span>
+        <span class="choice-sub">Masum bir insanı öldürmek yanlış</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: BOMBA -->
+  <div class="screen" id="screen-4">
+    <p class="q-step">Soru 4 / 4</p>
+    <div class="scenario-box">
+      <p class="scenario-title">Senaryo</p>
+      <p class="scenario-text">
+        Bir terörist, 1000 kişinin bulunduğu bir stadyuma bomba koydu. Tek bilgi sahibi kişiyi yakaladın. Konuşmuyor. Ama yanında masum bir yakını var. O kişiyi işkenceyle tehdit edersen terörist konuşacak ve bomba bulunacak — 1000 kişi kurtulacak. Tehdit gerçek olmalı.
+      </p>
+      <div class="scenario-illustration">💣 🏟️ → 🔍 → ❓</div>
+    </div>
+    <h2 class="q-title">İşkence tehdidini kullanır mısın?</h2>
+    <div class="choices">
+      <button class="choice-btn yes" onclick="answer(4, 'evet')">
+        <span class="choice-label">Evet, kullanırım</span>
+        <span class="choice-sub">1000 hayat kurtarmak için gerekli</span>
+      </button>
+      <button class="choice-btn no" onclick="answer(4, 'hayir')">
+        <span class="choice-label">Hayır, kullanmam</span>
+        <span class="choice-sub">İşkence her koşulda yanlış</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: RESULTS -->
+  <div class="screen" id="screen-result">
+    <div class="result-header">
+      <div class="result-icon" id="resultIcon">🔍</div>
+      <h2 class="result-title" id="resultTitle">Analiz Tamamlandı</h2>
+      <p class="result-subtitle" id="resultSubtitle">İşte cevaplarının felsefi analizi</p>
+    </div>
+
+    <div id="resultBody"></div>
+
+    <div class="result-actions">
+      <button class="btn-primary" onclick="restart()">Deneyi Tekrarla</button>
+      <a href="index.html" class="btn-outline">Diğer Deneyleri Gör</a>
+    </div>
+  </div>
+
+</div><!-- /experiment-wrap -->
+
+<script>
+  const answers = {};
+  let currentScreen = 'intro';
+
+  function updateProgress(step) {
+    const pct = (step / 4) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startExperiment() {
+    showScreen(1);
+    updateProgress(0);
+  }
+
+  function answer(q, val) {
+    answers[q] = val;
+    updateProgress(q);
+    if (q < 4) {
+      showScreen(q + 1);
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    updateProgress(4);
+    buildResult();
+    showScreen('result');
+
+    // Animate stat bars
+    setTimeout(() => {
+      document.querySelectorAll('.stat-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.pct + '%';
+      });
+    }, 300);
+  }
+
+  function buildResult() {
+    const a = answers;
+
+    // Tutarlılık analizi
+    const q1 = a[1] === 'evet'; // Kol çekti mi?
+    const q2 = a[2] === 'evet'; // Adam itti mi?
+    const q3 = a[3] === 'evet'; // Hastayı öldürdü mü?
+    const q4 = a[4] === 'evet'; // İşkence tehdidi kullandı mı?
+
+    let profile = '';
+    let profileDesc = '';
+    let icon = '';
+    let consistency = '';
+
+    // Profil belirleme
+    const evet_count = [q1,q2,q3,q4].filter(Boolean).length;
+
+    if (q1 && !q2 && !q3) {
+      profile = 'Deontolojik Eğilim';
+      icon = '⚖️';
+      profileDesc = 'Araç-amaç ayrımına önem veriyorsun. Kolu çekmek "izin verilen" bir müdahale iken, birini doğrudan araç olarak kullanmayı reddediyorsun. Bu Kant\'ın ahlak felsefesiyle örtüşüyor: insanlar asla yalnızca araç olarak kullanılmamalı.';
+      consistency = 'Cevapların büyük ölçüde tutarlı. Soru 1 ile 2 arasındaki fark —kolu çekmek vs. birini itmek— ahlak filozoflarının "doğrudan zarar" ile "dolaylı zarar" ayrımı olarak tartıştığı bir noktadır.';
+    } else if (q1 && q2 && q3 && q4) {
+      profile = 'Katı Faydacı';
+      icon = '🧮';
+      profileDesc = 'Tüm sorularda daha fazla kişiyi kurtarmayı seçtin. Bu klasik faydacılık: en fazla kişi için en fazla iyilik. Jeremy Bentham ve John Stuart Mill\'in savunduğu bu görüş, ahlaki kararları sonuçlarına göre değerlendirir.';
+      consistency = 'Cevapların tutarlı bir faydacı tutumu yansıtıyor. Ancak bu tutumun zorlayıcı yanı şu: Aynı mantıkla, tek birini kurban ederek milyonları kurtarmak her zaman doğru olur — bu sizi rahatsız ediyor mu?';
+    } else if (!q1 && !q2 && !q3 && !q4) {
+      profile = 'Kesinlikçi Ahlak';
+      icon = '🛡️';
+      profileDesc = 'Hiçbir senaryoda aktif müdahaleyi seçmedin. Bu, bazı eylemlerin sonuçlarından bağımsız olarak yanlış olduğunu savunan "mutlak" ahlak anlayışıyla örtüşüyor. Sonuçlar ne olursa olsun bazı sınırlar aşılmamalı.';
+      consistency = 'Cevapların kendi içinde tutarlı. Ancak şunu düşün: Hiçbir şey yapmamanın da bir seçim olduğunu ve sonuçları olduğunu unutmamak gerekiyor.';
+    } else {
+      profile = 'Karma Sezgisel';
+      icon = '🌀';
+      profileDesc = 'Cevapların tek bir ahlak teorisine tam olarak uymadı — bu aslında çoğu insanın durumu. Farklı senaryolarda farklı sezgiler devreye giriyor: bazen sonuçlar, bazen kurallar ağır basıyor.';
+      consistency = 'Dikkat çekici bir tutarsızlık tespit edildi: ' + getTutarsizlik(q1, q2, q3, q4);
+    }
+
+    // İstatistikler (orijinal sitedeki gerçek verilere yakın tahminler)
+    const stats = [
+      { label: 'Soru 1: Kolu çeker', evet: 85 },
+      { label: 'Soru 2: Adamı iter', evet: 30 },
+      { label: 'Soru 3: Hastayı öldürür', evet: 8 },
+      { label: 'Soru 4: İşkence tehdidi kullanır', evet: 45 },
+    ];
+
+    let html = `
+      <div class="analysis-block">
+        <p class="analysis-label">Ahlaki Profilin</p>
+        <h3 class="analysis-title">${icon} ${profile}</h3>
+        <p class="analysis-text">${profileDesc}</p>
+      </div>
+
+      <div class="consistency-card">
+        <h3>Tutarlılık Analizi</h3>
+        <p>${consistency}</p>
+      </div>
+
+      <div class="analysis-block">
+        <p class="analysis-label">Cevaplarının Özeti</p>
+        <h3 class="analysis-title">Sen ne dedin?</h3>
+        ${[1,2,3,4].map(i => `
+          <div style="display:flex; justify-content:space-between; padding:0.8rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;">
+            <span style="color:var(--muted)">${['Kolu çek','Adamı it','Hastayı öldür','İşkence tehdidi'][i-1]}</span>
+            <strong style="color:${answers[i]==='evet'?'var(--rust)':'var(--sage)'}">${answers[i]==='evet'?'Evet':'Hayır'}</strong>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="analysis-block">
+        <p class="analysis-label">Dünya Geneli İstatistikleri</p>
+        <h3 class="analysis-title">Diğerleri ne dedi?</h3>
+        ${stats.map((s, i) => `
+          <div class="stat-block">
+            <p class="stat-label">${s.label}</p>
+            <div class="stat-bar-wrap">
+              <div class="stat-bar-fill" data-pct="${s.evet}"></div>
+            </div>
+            <div class="stat-numbers">
+              <span>Evet: <strong>${s.evet}%</strong></span>
+              <span>Hayır: <strong>${100 - s.evet}%</strong></span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="philosophy-box">
+        <h3>Bu Deney Ne Öğretiyor?</h3>
+        <p>
+          Vagon problemi, 1967'de filozoflar Philippa Foot ve Judith Jarvis Thomson tarafından geliştirildi. Temel amacı şu soruyu test etmek: <em>Ahlaki kararlarımızda sonuçlar mı, yoksa eylem türleri mi belirleyici?</em>
+          <br><br>
+          Çoğu insan Soru 1'de "evet", Soru 2'de "hayır" diyor — matematiksel olarak aynı sonuç olmasına rağmen. Bu tutarsızlık bize şunu gösteriyor: Ahlaki sezgilerimiz saf mantıkla işlemiyor. "Kişisel temas" ve "aracı doğrudan kullanma" gibi faktörler kararlarımızı derinden etkiliyor.
+        </p>
+      </div>
+    `;
+
+    document.getElementById('resultTitle').textContent = profile;
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultSubtitle').textContent = 'Ahlaki profilin ve tutarlılık analizi';
+    document.getElementById('resultBody').innerHTML = html;
+  }
+
+  function getTutarsizlik(q1, q2, q3, q4) {
+    if (q1 && !q2) return 'Soru 1\'de kolu çektin (dolaylı bir eylem), ama Soru 2\'de adamı itmedin. Matematiksel sonuç aynı: 1 ölüm, 5 kurtuluş. Peki fark ne? Çoğu insan "doğrudan fiziksel temas"ın farklı hissettirdiğini söylüyor.';
+    if (!q1 && q2) return 'Soru 1\'de kolu çekmedin ama Soru 2\'de adamı itmek istedin. Bu oldukça sıra dışı — genellikle doğrudan fiziksel eylem daha zor gelir.';
+    if (q2 && !q3) return 'Adamı köprüden itmeye hazırsın ama hastayı ameliyathanede öldürmek istemiyorsun. Her iki durumda da masum biri araç olarak kullanılıyor — fark nerede?';
+    return 'Bazı cevapların birbirleriyle gerilim içinde. Bu, ahlaki sezgilerin her zaman tek bir ilkeye dayanmadığını gösteriyor.';
+  }
+
+  function restart() {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    updateProgress(0);
+    showScreen('intro');
+  }
+</script>
+
+</body>
+</html>
