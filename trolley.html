@@ -436,6 +436,57 @@
       border-top: 1px solid var(--border);
     }
 
+
+    /* PRE-STATS */
+    .pre-stat-block {
+      border: 1.5px solid var(--border);
+      padding: 1.8rem;
+      margin-bottom: 1.2rem;
+      background: var(--paper);
+    }
+
+    .pre-stat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--ink);
+    }
+
+    .pre-stat-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .pre-bar-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .pre-bar-fill {
+      height: 36px;
+      width: 0;
+      transition: width 1s ease;
+      display: flex;
+      align-items: center;
+      padding-left: 0.8rem;
+      min-width: 2px;
+    }
+
+    .pre-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .pre-bar-labels strong {
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
     @media (max-width: 600px) {
       nav { padding: 1rem 1.2rem; }
       .experiment-wrap { padding: 2.5rem 1.2rem 4rem; }
@@ -529,6 +580,78 @@
         </button>
       </div>
     </div>
+  </div>
+
+
+  <!-- SCREEN PRE-STATS: ÖN SORU İSTATİSTİKLERİ -->
+  <div class="screen" id="screen-pre-stats">
+    <p class="intro-label">Ön Karşılaştırma</p>
+    <h2 class="intro-title" style="font-size:2rem;margin-bottom:0.8rem;">Diğerleri Nasıl Yanıtladı?</h2>
+    <p class="intro-text" style="margin-bottom:2.5rem;">
+      Ön sorular tamamlandı. Şimdiye kadar binlerce kişi bu deneyi tamamladı. Aşağıdaki grafikler onların bu sorulara nasıl yanıt verdiğini gösteriyor.
+    </p>
+
+    <div class="pre-stat-block">
+      <p class="pre-stat-title">İşkence her zaman ahlaken yanlış mıdır?</p>
+      <div class="pre-stat-bars">
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="61" style="background:var(--rust)"></div>
+          <div class="pre-bar-labels"><span>Evet</span><strong id="s1-evet">61%</strong></div>
+        </div>
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="39" style="background:var(--sage)"></div>
+          <div class="pre-bar-labels"><span>Hayır</span><strong id="s1-hayir">39%</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pre-stat-block">
+      <p class="pre-stat-title">Ahlak, mutluluğu en üst düzeye çıkarmakla belirlenir mi?</p>
+      <div class="pre-stat-bars">
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="43" style="background:var(--rust)"></div>
+          <div class="pre-bar-labels"><span>Evet</span><strong>43%</strong></div>
+        </div>
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="57" style="background:var(--sage)"></div>
+          <div class="pre-bar-labels"><span>Hayır</span><strong>57%</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pre-stat-block">
+      <p class="pre-stat-title">Birinin ölümüne yol açmak her zaman yanlış mıdır?</p>
+      <div class="pre-stat-bars">
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="54" style="background:var(--rust)"></div>
+          <div class="pre-bar-labels"><span>Evet</span><strong>54%</strong></div>
+        </div>
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="46" style="background:var(--sage)"></div>
+          <div class="pre-bar-labels"><span>Hayır</span><strong>46%</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pre-stat-block">
+      <p class="pre-stat-title">Masum hayatları kurtarmak ahlaki bir zorunluluk mudur?</p>
+      <div class="pre-stat-bars">
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="78" style="background:var(--rust)"></div>
+          <div class="pre-bar-labels"><span>Evet</span><strong>78%</strong></div>
+        </div>
+        <div class="pre-bar-wrap">
+          <div class="pre-bar-fill" data-pct="22" style="background:var(--sage)"></div>
+          <div class="pre-bar-labels"><span>Hayır</span><strong>22%</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;padding:1rem 1.5rem;background:var(--cream);border-left:3px solid var(--gold);font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:2.5rem;">
+      Sen nasıl yanıtladın? Senin cevapların çoğunlukla örtüşüyor mu, yoksa ayrışıyor mu? Deneyin sonunda kendi cevaplarınla karşılaştırabilirsin.
+    </div>
+
+    <button class="btn-primary" onclick="goToMainExperiment()">Asıl Deneye Geç →</button>
   </div>
 
   <!-- SCREEN 1: VAGON PROBLEMİ (Klasik) -->
@@ -671,9 +794,19 @@
       document.getElementById('pre-step').textContent = 'Ön Soru ' + (q + 1) + ' / 4';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      showScreen(1);
+      showScreen('pre-stats');
       updateProgress(0);
+      setTimeout(() => {
+        document.querySelectorAll('.pre-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }, 300);
     }
+  }
+
+  function goToMainExperiment() {
+    showScreen(1);
+    updateProgress(0);
   }
 
   function answer(q, val) {
