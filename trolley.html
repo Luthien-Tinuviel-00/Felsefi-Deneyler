@@ -477,6 +477,60 @@
     <button class="btn-primary" onclick="startExperiment()">Deneye Başla →</button>
   </div>
 
+  <!-- SCREEN PRE: ÖN SORULAR -->
+  <div class="screen" id="screen-pre">
+    <p class="q-step" id="pre-step">Ön Soru 1 / 4</p>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:2rem;font-weight:300;">Aşağıdaki ifadelere ne ölçüde katıldığını belirt. Doğru ya da yanlış cevap yok.</p>
+
+    <div id="pre-q1" class="pre-question">
+      <h2 class="q-title">"İşkence, ilke olarak, her zaman ahlaki açıdan yanlıştır."</h2>
+      <div class="choices">
+        <button class="choice-btn yes" onclick="preAnswer(1, 'evet')">
+          <span class="choice-label">Evet, katılıyorum</span>
+        </button>
+        <button class="choice-btn no" onclick="preAnswer(1, 'hayir')">
+          <span class="choice-label">Hayır, katılmıyorum</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="pre-q2" class="pre-question" style="display:none">
+      <h2 class="q-title">"Bir eylemin ahlakiliği; mevcut diğer seçeneklerle karşılaştırıldığında, o eylemden etkilenen tüm insanların toplam mutluluğunu en üst düzeye çıkarıp çıkarmadığıyla belirlenir."</h2>
+      <div class="choices">
+        <button class="choice-btn yes" onclick="preAnswer(2, 'evet')">
+          <span class="choice-label">Evet, katılıyorum</span>
+        </button>
+        <button class="choice-btn no" onclick="preAnswer(2, 'hayir')">
+          <span class="choice-label">Hayır, katılmıyorum</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="pre-q3" class="pre-question" style="display:none">
+      <h2 class="q-title">"Önlenebilir bir durum söz konusuysa, yaşamak isteyen bir başkasının ölümüne yol açmak her zaman ve her yerde yanlıştır."</h2>
+      <div class="choices">
+        <button class="choice-btn yes" onclick="preAnswer(3, 'evet')">
+          <span class="choice-label">Evet, katılıyorum</span>
+        </button>
+        <button class="choice-btn no" onclick="preAnswer(3, 'hayir')">
+          <span class="choice-label">Hayır, katılmıyorum</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="pre-q4" class="pre-question" style="display:none">
+      <h2 class="q-title">"Toplam insan mutluluğunu azaltmadan ve kendi hayatını tehlikeye atmadan masum insanların hayatını kurtarabiliyorsan, bunu yapmak ahlaki bir zorunluluktur."</h2>
+      <div class="choices">
+        <button class="choice-btn yes" onclick="preAnswer(4, 'evet')">
+          <span class="choice-label">Evet, katılıyorum</span>
+        </button>
+        <button class="choice-btn no" onclick="preAnswer(4, 'hayir')">
+          <span class="choice-label">Hayır, katılmıyorum</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- SCREEN 1: VAGON PROBLEMİ (Klasik) -->
   <div class="screen" id="screen-1">
     <p class="q-step">Soru 1 / 4</p>
@@ -602,9 +656,24 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  const preAnswers = {};
+
   function startExperiment() {
-    showScreen(1);
+    showScreen('pre');
     updateProgress(0);
+  }
+
+  function preAnswer(q, val) {
+    preAnswers[q] = val;
+    if (q < 4) {
+      document.getElementById('pre-q' + q).style.display = 'none';
+      document.getElementById('pre-q' + (q + 1)).style.display = 'block';
+      document.getElementById('pre-step').textContent = 'Ön Soru ' + (q + 1) + ' / 4';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      showScreen(1);
+      updateProgress(0);
+    }
   }
 
   function answer(q, val) {
