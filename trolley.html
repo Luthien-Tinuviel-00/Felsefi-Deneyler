@@ -437,6 +437,32 @@
     }
 
 
+
+    /* YORUM KUTUSU */
+    .yorum-box {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--gold);
+    }
+
+    .yorum-baslik {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .yorum-metin {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      font-weight: 300;
+      color: rgba(245,240,232,0.9);
+    }
+
     /* PRE-STATS */
     .pre-stat-block {
       border: 1.5px solid var(--border);
@@ -651,27 +677,38 @@
     <button class="btn-primary" onclick="goToMainExperiment()">Asıl Deneye Geç →</button>
   </div>
 
-  <!-- SCREEN 1: VAGON PROBLEMİ (Klasik) -->
+  <!-- SCREEN 1: CASEY JONES -->
   <div class="screen" id="screen-1">
     <p class="q-step">Soru 1 / 4</p>
     <div class="scenario-box">
       <p class="scenario-title">Senaryo</p>
-      <p class="scenario-text">
-        Kontrolden çıkmış bir tramvay raya bağlı <strong>beş kişiye</strong> doğru gidiyor. Onları ezecek ve öldürecek. Sen bir köprünün üzerindesin ve önünde bir kol var. Kolu çekersen tramvay yan raya sapacak — ama orada da <strong>bir kişi</strong> var ve o ölecek.
-      </p>
-      <div class="scenario-illustration">🚋 ——————— 👥👥👥👥👥</div>
+      <p class="scenario-text">Casey Jones'un kullandığı trenin frenleri az önce arızalandı. Trenin önündeki raylarda <strong>beş kişi</strong> bulunuyor. Tren onlara çarpmadan önce raylardan kaçmaları imkansız. Rayların sağ tarafında bir yan hat var ve Casey bir düğmeye basarak treni bu yöne yönlendirebilir. Ne yazık ki bu yan hatta da <strong>bir kişi</strong> sıkışmış durumda.</p>
+      <div class="scenario-illustration">🚂 ——————— 👥👥👥👥👥</div>
     </div>
-    <h2 class="q-title">Kolu çeker misin?</h2>
+    <h2 class="q-title">Treni yönlendirmeli mi?</h2>
     <div class="choices">
       <button class="choice-btn yes" onclick="answer(1, 'evet')">
-        <span class="choice-label">Evet, kolu çekerim</span>
-        <span class="choice-sub">Bir kişi ölür, beş kişi kurtulur</span>
+        <span class="choice-label">Evet, treni yönlendirmeli</span>
+        <span class="choice-sub">1 kişi ölür, 5 kişi kurtulur</span>
       </button>
       <button class="choice-btn no" onclick="answer(1, 'hayir')">
-        <span class="choice-label">Hayır, müdahale etmem</span>
-        <span class="choice-sub">Beş kişi ölür, ben kimseyi öldürmemiş olurum</span>
+        <span class="choice-label">Hayır, trenin yoluna devam etmesine izin vermeli</span>
+        <span class="choice-sub">5 kişi ölür, Casey kimseyi doğrudan öldürmemiş olur</span>
       </button>
     </div>
+  </div>
+
+  <!-- SCREEN 1-YORUM -->
+  <div class="screen" id="screen-1-yorum">
+    <div class="yorum-box" id="yorum-1-evet" style="display:none">
+      <p class="yorum-baslik">💬 Tutarlılık Analizi</p>
+      <p class="yorum-metin" id="yorum-1-evet-metin"></p>
+    </div>
+    <div class="yorum-box" id="yorum-1-hayir" style="display:none">
+      <p class="yorum-baslik">💬 Tutarlılık Analizi</p>
+      <p class="yorum-metin" id="yorum-1-hayir-metin"></p>
+    </div>
+    <button class="btn-primary" style="margin-top:2rem" onclick="goToScreen(2)">Sonraki Soru →</button>
   </div>
 
   <!-- SCREEN 2: ŞİŞMAN ADAM -->
@@ -679,71 +716,83 @@
     <p class="q-step">Soru 2 / 4</p>
     <div class="scenario-box">
       <p class="scenario-title">Senaryo</p>
-      <p class="scenario-text">
-        Aynı tramvay, aynı beş kişi. Ama bu sefer kol yok. Sen bir köprünün üzerindesin ve yanında <strong>çok iri yapılı bir adam</strong> var. Onu köprüden itersen tramvayın önünde durur — tramvay durur, beş kişi kurtulur. Ama adam ölür. Bunu yapmanın tek yolu onu itmektir.
-      </p>
-      <div class="scenario-illustration">🧍‍♂️ 🌉 🚋 ——— 👥👥👥👥👥</div>
+      <p class="scenario-text">Marty Bakerman, tren raylarının üzerindeki bir yaya köprüsünde duruyor. Köprüye yaklaşan trenin kontrolden çıktığını ve köprüyü geçtikten hemen sonra raylarda mahsur kalan <strong>beş kişiye</strong> çarpacağını görüyor. Treni durdurmanın tek yolu, yoluna ağır bir yük atmaktır. Elindeki yeterince ağır tek yük, kendisi de köprüden treni izleyen <strong>(çok) şişman bir adam</strong>dır.</p>
+      <div class="scenario-illustration">🧍‍♂️ 🌉 🚂 ——— 👥👥👥👥👥</div>
     </div>
-    <h2 class="q-title">Adamı iter misin?</h2>
+    <h2 class="q-title">Şişman adamı rayların üzerine itmeli mi?</h2>
     <div class="choices">
       <button class="choice-btn yes" onclick="answer(2, 'evet')">
-        <span class="choice-label">Evet, iterim</span>
-        <span class="choice-sub">Bir kişi ölür, beş kişi kurtulur — matematik aynı</span>
+        <span class="choice-label">Evet, itmeli</span>
+        <span class="choice-sub">1 kişi ölür, 5 kişi kurtulur</span>
       </button>
       <button class="choice-btn no" onclick="answer(2, 'hayir')">
-        <span class="choice-label">Hayır, itmem</span>
-        <span class="choice-sub">Birini doğrudan öldürmek farklı bir şey</span>
+        <span class="choice-label">Hayır, itme</span>
+        <span class="choice-sub">5 kişi ölür, Marty kimseyi doğrudan öldürmemiş olur</span>
       </button>
     </div>
   </div>
 
-  <!-- SCREEN 3: AMELIYATHANE -->
+  <!-- SCREEN 2-YORUM -->
+  <div class="screen" id="screen-2-yorum">
+    <div class="yorum-box">
+      <p class="yorum-baslik">💬 Tutarlılık Analizi</p>
+      <p class="yorum-metin" id="yorum-2-metin"></p>
+    </div>
+    <button class="btn-primary" style="margin-top:2rem" onclick="goToScreen(3)">Sonraki Soru →</button>
+  </div>
+
+  <!-- SCREEN 3: SABOTAJCI -->
   <div class="screen" id="screen-3">
     <p class="q-step">Soru 3 / 4</p>
     <div class="scenario-box">
       <p class="scenario-title">Senaryo</p>
-      <p class="scenario-text">
-        Bir hastane doktorusun. Beş hastanın her biri farklı bir organa ihtiyaç duyuyor, aksi halde ölecekler. Tam bu sırada rutin kontrol için tamamen sağlıklı bir hasta geliyor. Organlarını çıkarıp beş hastaya nakletsen — o ölür, beş hasta yaşar.
-      </p>
-      <div class="scenario-illustration">🏥 👨‍⚕️ → 🫀🫁🧠</div>
+      <p class="scenario-text">Bu senaryo bir öncekiyle tamamen aynı, ancak tek bir önemli fark var. Bu sefer Marty Bakerman, köprüdeki şişman adamın <strong>trenin frenlerini sabote ettiğini</strong> kesin olarak biliyor: Tren bilet fiyatlarındaki artıştan rahatsız olan adam, bir kaza çıkarmak amacıyla frenleri sabote etmiş. Treni durdurmanın ve beş kişiyi kurtarmanın tek yolu yine şişman sabotajcıyı köprüden itmektir.</p>
+      <div class="scenario-illustration">😈 🌉 🚂 ——— 👥👥👥👥👥</div>
     </div>
-    <h2 class="q-title">Sağlıklı hastayı öldürür müsün?</h2>
+    <h2 class="q-title">Şişman sabotajcıyı rayların üzerine itmeli mi?</h2>
     <div class="choices">
       <button class="choice-btn yes" onclick="answer(3, 'evet')">
-        <span class="choice-label">Evet, operasyonu yaparım</span>
-        <span class="choice-sub">Beş hayat bir hayattan daha değerli</span>
+        <span class="choice-label">Evet, itmeli</span>
+        <span class="choice-sub">1 kişi ölür, 5 kişi kurtulur</span>
       </button>
       <button class="choice-btn no" onclick="answer(3, 'hayir')">
-        <span class="choice-label">Hayır, yapmam</span>
-        <span class="choice-sub">Masum bir insanı öldürmek yanlış</span>
+        <span class="choice-label">Hayır, itme</span>
+        <span class="choice-sub">5 kişi ölür, Marty kimseyi doğrudan öldürmemiş olur</span>
       </button>
     </div>
   </div>
 
-  <!-- SCREEN 4: BOMBA -->
+  <!-- SCREEN 3-YORUM -->
+  <div class="screen" id="screen-3-yorum">
+    <div class="yorum-box">
+      <p class="yorum-baslik">💬 Tutarlılık Analizi</p>
+      <p class="yorum-metin" id="yorum-3-metin"></p>
+    </div>
+    <button class="btn-primary" style="margin-top:2rem" onclick="goToScreen(4)">Sonraki Soru →</button>
+  </div>
+
+  <!-- SCREEN 4: İŞKENCE -->
   <div class="screen" id="screen-4">
     <p class="q-step">Soru 4 / 4</p>
     <div class="scenario-box">
       <p class="scenario-title">Senaryo</p>
-      <p class="scenario-text">
-        Bir terörist, 1000 kişinin bulunduğu bir stadyuma bomba koydu. Tek bilgi sahibi kişiyi yakaladın. Konuşmuyor. Ama yanında masum bir yakını var. O kişiyi işkenceyle tehdit edersen terörist konuşacak ve bomba bulunacak — 1000 kişi kurtulacak. Tehdit gerçek olmalı.
-      </p>
-      <div class="scenario-illustration">💣 🏟️ → 🔍 → ❓</div>
+      <p class="scenario-text">Şişman adam tutuklandı ve polis gözetiminde. Büyük bir şehir merkezinde <strong>24 saat içinde patlayacak bir nükleer cihaz</strong> sakladığını söylüyor. Bomba patlarsa <strong>bir milyon insanı</strong> öldürecek. Şişman adam işkenceye maruz kalırsa bombanın yerini söyleme ihtimali <strong>%75</strong>. Kandırılamıyor, ikna edilemiyor. Bombanın yerini öğrenmenin başka yolu yok.</p>
+      <div class="scenario-illustration">💣 🏙️ → 🔍 → ❓</div>
     </div>
-    <h2 class="q-title">İşkence tehdidini kullanır mısın?</h2>
+    <h2 class="q-title">Şişman adam işkenceye maruz kalmalı mı?</h2>
     <div class="choices">
       <button class="choice-btn yes" onclick="answer(4, 'evet')">
-        <span class="choice-label">Evet, kullanırım</span>
-        <span class="choice-sub">1000 hayat kurtarmak için gerekli</span>
+        <span class="choice-label">Evet, işkenceye maruz kalmalı</span>
+        <span class="choice-sub">1 milyon hayat kurtarmak için gerekli</span>
       </button>
       <button class="choice-btn no" onclick="answer(4, 'hayir')">
-        <span class="choice-label">Hayır, kullanmam</span>
+        <span class="choice-label">Hayır, işkence uygulanmamalı</span>
         <span class="choice-sub">İşkence her koşulda yanlış</span>
       </button>
     </div>
   </div>
 
-  <!-- SCREEN 5: RESULTS -->
+<!-- SCREEN 5: RESULTS -->
   <div class="screen" id="screen-result">
     <div class="result-header">
       <div class="result-icon" id="resultIcon">🔍</div>
@@ -809,9 +858,93 @@
   function answer(q, val) {
     answers[q] = val;
     updateProgress(q);
-    if (q < 4) {
-      showScreen(q + 1);
+    showYorum(q, val);
+  }
+
+  function goToScreen(q) {
+    if (q <= 4) {
+      updateProgress(q - 1);
+      showScreen(q);
     } else {
+      showResult();
+    }
+  }
+
+  function showYorum(q, val) {
+    // Ön soru cevapları
+    const onIskence = preAnswers[1] === 'evet';     // İşkence her zaman yanlış mı?
+    const onMutluluk = preAnswers[2] === 'evet';    // Ahlak mutluluğu maksimize etmek mi?
+    const onOlum = preAnswers[3] === 'evet';        // Ölüme yol açmak her zaman yanlış mı?
+    const onKurtarma = preAnswers[4] === 'evet';    // Masum hayatları kurtarmak zorunluluk mu?
+
+    let yorum = '';
+
+    if (q === 1) {
+      if (val === 'evet') {
+        if (onMutluluk && onOlum) {
+          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın, ahlakın insanların mutluluğunu maksimize etmekle ölçüldüğü yönündeki inancınla tutarlı. Ancak bu yanıt, bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor gibi görünüyor. Buna daha sonra döneceğiz.';
+        } else if (onMutluluk && !onOlum) {
+          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın, ahlakın insanların mutluluğunu maksimize etmekle ölçüldüğü yönündeki inancınla tutarlı. Devam edelim.';
+        } else if (!onMutluluk && onOlum) {
+          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın ilgi çekici. Ahlakın mutluluğu maksimize etmekle belirlenmediğini söyledin; ancak bu senaryoda daha az ölüme neden olan seçeneği tercih ettin. Öte yandan bu yanıt, bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor.';
+        } else {
+          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın, beş hayat kurtarmak için bir kişinin ölümüne neden olmayı kabul ettiğini gösteriyor. Bu tutumun ön sorularındaki cevaplarınla nasıl bir ilişki kurduğuna daha sonra bakacağız.';
+        }
+        document.getElementById('yorum-1-evet-metin').textContent = yorum;
+        document.getElementById('yorum-1-evet').style.display = 'block';
+      } else {
+        if (onMutluluk) {
+          yorum = 'Casey'nin treni yönlendirmemesi gerektiği yönündeki yanıtın oldukça ilginç. Ahlakın mutluluğu maksimize etmekle belirlendiğini söyledin; ancak bu durumda beş kişiyi kurtaracak seçeneği reddettin. Bu tutarsızlık deneyin ilerleyen kısımlarında ele alınacak.';
+        } else {
+          yorum = 'Casey'nin treni yönlendirmemesi gerektiği yönündeki yanıtın, müdahale etmemenin ahlaki açıdan daha güvenli olduğunu düşündüğüne işaret ediyor. Sonraki senaryolarda bu tutumun ne ölçüde tutarlı kaldığını göreceğiz.';
+        }
+        document.getElementById('yorum-1-hayir-metin').textContent = yorum;
+        document.getElementById('yorum-1-hayir').style.display = 'block';
+      }
+      showScreen('1-yorum');
+
+    } else if (q === 2) {
+      const q1evet = answers[1] === 'evet';
+      if (val === 'evet') {
+        if (q1evet && onOlum) {
+          yorum = 'Bu ilginç bir yanıt. Araştırmalar, çoğu insanın şişman adamı köprüden itmenin doğru olmadığı görüşünde olduğunu gösteriyor. Ancak yanıtın, Casey'nin treni yönlendirmesi gerektiği ve mutluluğu maksimize etme yönünde ahlaki bir zorunluluk bulunduğu yönündeki görüşlerinle tutarlı. Ne yazık ki daha önce olduğu gibi, yanıtın bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor.';
+        } else if (q1evet && !onOlum) {
+          yorum = 'Şişman adamı itme kararın, Casey'nin treni yönlendirmesi gerektiği yönündeki önceki yanıtınla tutarlı. Her iki durumda da daha az can kaybına yol açan seçeneği tercih ettin.';
+        } else if (!q1evet) {
+          yorum = 'Treni yönlendirmeyi reddedip şişman adamı itmeyi kabul etmen ilginç bir çelişki ortaya koyuyor. Her iki senaryoda da matematiksel sonuç aynı: 1 ölüm, 5 kurtuluş. Peki bu iki durum arasında seni farklı bir karar almaya yönelten neydi?';
+        } else {
+          yorum = 'Şişman adamı itme kararın, daha fazla insanı kurtarmak için bir kişinin hayatını feda etmeye razı olduğunu gösteriyor. Bu tutumun sonraki sorularla olan ilişkisine bakacağız.';
+        }
+      } else {
+        if (q1evet) {
+          yorum = 'Treni yönlendirmeyi kabul edip şişman adamı itmemeyi seçmen dikkat çekici. Her iki durumda da matematiksel sonuç aynı olmasına karşın farklı kararlar aldın. Pek çok insan bu ikilem karşısında aynı tepkiyi veriyor: Doğrudan fiziksel temas içeren bir eylemi gerçekleştirmek, bir kolu çevirmekten çok farklı hissettiriyor.';
+        } else {
+          yorum = 'Şişman adamı itmeme kararın önceki yanıtınla tutarlı; her iki durumda da aktif müdahaleden kaçındın. Bu tutumun sonraki sorularda da sürdürülüp sürdürülmediğini göreceğiz.';
+        }
+      }
+      document.getElementById('yorum-2-metin').textContent = yorum;
+      showScreen('2-yorum');
+
+    } else if (q === 3) {
+      const q2evet = answers[2] === 'evet';
+      if (val === 'evet') {
+        if (q2evet) {
+          yorum = 'Sabotajcıyı itme kararın, masum şişman adamı da itmen gerektiği yönündeki önceki yanıtın göz önüne alındığında şaşırtıcı değil. Ancak yanıtlarında hâlâ bir tutarsızlık var: Bir başkasının ölümüne yol açmanın her zaman yanlış olduğunu önceden iddia ettiğin düşünüldüğünde, bu kararın o inançla ne ölçüde örtüştüğü belirsizliğini koruyor.';
+        } else {
+          yorum = 'Masum şişman adamı itmeyip sabotajcıyı itmeyi seçmen, ahlaki sorumluluğun kurbanın davranışından etkilendiğini düşündüğüne işaret ediyor. Kendi felaketine zemin hazırlayan birinin hayatı, masum birinin hayatından daha mı az değerli?';
+        }
+      } else {
+        if (q2evet) {
+          yorum = 'Masum şişman adamı iterken sabotajcıyı itmemeyi seçmen ilginç bir ayrım ortaya koyuyor. Sabotajcının suçluluğu onu kurtarılmaya daha mı layık kılıyor, yoksa başka bir etken mi devreye giriyor?';
+        } else {
+          yorum = 'Hem masum adamı hem de sabotajcıyı itmemeyi seçmen tutarlı bir tablo çiziyor: Sonuç ne olursa olsun, birini doğrudan araç olarak kullanmayı reddediyorsun.';
+        }
+      }
+      document.getElementById('yorum-3-metin').textContent = yorum;
+      showScreen('3-yorum');
+
+    } else if (q === 4) {
+      updateProgress(4);
       showResult();
     }
   }
@@ -941,6 +1074,12 @@
 
   function restart() {
     Object.keys(answers).forEach(k => delete answers[k]);
+    Object.keys(preAnswers).forEach(k => delete preAnswers[k]);
+    // Reset yorum screens
+    ['yorum-1-evet','yorum-1-hayir'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.style.display = 'none';
+    });
     updateProgress(0);
     showScreen('intro');
   }
