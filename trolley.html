@@ -463,6 +463,145 @@
       color: rgba(245,240,232,0.9);
     }
 
+
+    /* ANALİZ EKRANLARI */
+    .analiz-step {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .analiz-pct { color: var(--gold); font-weight: 500; }
+    .analiz-progress {
+      height: 3px;
+      background: var(--border);
+      margin-bottom: 2.5rem;
+    }
+    .analiz-progress-fill {
+      height: 100%;
+      background: var(--rust);
+    }
+    .analiz-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .analiz-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+    .analiz-p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      max-width: 70ch;
+    }
+    .analiz-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+      align-items: start;
+    }
+    .skor-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+    .skor-bars {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-end;
+      height: 140px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      justify-content: center;
+    }
+    .skor-bar-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.3rem; }
+    .skor-bar-fill { width: 50px; transition: height 1s ease; height: 0; }
+    .skor-bar-pct { font-size: 0.85rem; font-weight: 500; }
+    .skor-bar-text { font-size: 0.75rem; color: var(--muted); }
+    .analiz-text-block {}
+    .analiz-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .bar-chart-block {
+      border: 1.5px solid var(--border);
+      padding: 1.5rem;
+      background: var(--paper);
+    }
+    .chart-title {
+      font-weight: 500;
+      font-size: 0.88rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .chart-bars { display: flex; gap: 1rem; align-items: flex-end; height: 100px; border-bottom: 1px solid var(--border); justify-content: center; }
+    .chart-bar-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.2rem; }
+    .chart-bar { width: 45px; transition: height 1s ease; height: 0; }
+    .evet-bar { background: #4ade80; }
+    .hayir-bar { background: #f87171; }
+    .chart-bar-pct { font-size: 0.78rem; font-weight: 500; }
+    .chart-bar-label { font-size: 0.72rem; color: var(--muted); }
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      background: var(--cream);
+      margin: 1.5rem 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .sonuc-tablo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+    .sonuc-tablo th {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-weight: 500;
+    }
+    .sonuc-tablo td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .sonuc-tablo td:last-child { font-weight: 500; color: var(--ink); }
+    .skor-final-box {
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .skor-final-box strong { color: var(--rust); font-size: 1.1rem; }
+    @media (max-width: 600px) {
+      .analiz-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .chart-grid { grid-template-columns: 1fr; }
+    }
     /* PRE-STATS */
     .pre-stat-block {
       border: 1.5px solid var(--border);
@@ -882,21 +1021,21 @@
     if (q === 1) {
       if (val === 'evet') {
         if (onMutluluk && onOlum) {
-          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın, ahlakın insanların mutluluğunu maksimize etmekle ölçüldüğü yönündeki inancınla tutarlı. Ancak bu yanıt, bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor gibi görünüyor. Buna daha sonra döneceğiz.';
+          yorum = `Casey’nin treni yönlendirmesi gerektiği yönündeki yanıtın, ahlakın insanların mutluluğunu maksimize etmekle ölçüldüğü yönündeki inancınla tutarlı. Ancak bu yanıt, bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor gibi görünüyor. Buna daha sonra döneceğiz.`;
         } else if (onMutluluk && !onOlum) {
-          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın, ahlakın insanların mutluluğunu maksimize etmekle ölçüldüğü yönündeki inancınla tutarlı. Devam edelim.';
+          yorum = `Casey’nin treni yönlendirmesi gerektiği yönündeki yanıtın, ahlakın insanların mutluluğunu maksimize etmekle ölçüldüğü yönündeki inancınla tutarlı. Devam edelim.`;
         } else if (!onMutluluk && onOlum) {
-          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın ilgi çekici. Ahlakın mutluluğu maksimize etmekle belirlenmediğini söyledin; ancak bu senaryoda daha az ölüme neden olan seçeneği tercih ettin. Öte yandan bu yanıt, bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor.';
+          yorum = `Casey’nin treni yönlendirmesi gerektiği yönündeki yanıtın ilgi çekici. Ahlakın mutluluğu maksimize etmekle belirlenmediğini söyledin; ancak bu senaryoda daha az ölüme neden olan seçeneği tercih ettin. Öte yandan bu yanıt, bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor.`;
         } else {
-          yorum = 'Casey'nin treni yönlendirmesi gerektiği yönündeki yanıtın, beş hayat kurtarmak için bir kişinin ölümüne neden olmayı kabul ettiğini gösteriyor. Bu tutumun ön sorularındaki cevaplarınla nasıl bir ilişki kurduğuna daha sonra bakacağız.';
+          yorum = `Casey’nin treni yönlendirmesi gerektiği yönündeki yanıtın, beş hayat kurtarmak için bir kişinin ölümüne neden olmayı kabul ettiğini gösteriyor. Bu tutumun ön sorularındaki cevaplarınla nasıl bir ilişki kurduğuna daha sonra bakacağız.`;
         }
         document.getElementById('yorum-1-evet-metin').textContent = yorum;
         document.getElementById('yorum-1-evet').style.display = 'block';
       } else {
         if (onMutluluk) {
-          yorum = 'Casey'nin treni yönlendirmemesi gerektiği yönündeki yanıtın oldukça ilginç. Ahlakın mutluluğu maksimize etmekle belirlendiğini söyledin; ancak bu durumda beş kişiyi kurtaracak seçeneği reddettin. Bu tutarsızlık deneyin ilerleyen kısımlarında ele alınacak.';
+          yorum = `Casey’nin treni yönlendirmemesi gerektiği yönündeki yanıtın oldukça ilginç. Ahlakın mutluluğu maksimize etmekle belirlendiğini söyledin; ancak bu durumda beş kişiyi kurtaracak seçeneği reddettin. Bu tutarsızlık deneyin ilerleyen kısımlarında ele alınacak.`;
         } else {
-          yorum = 'Casey'nin treni yönlendirmemesi gerektiği yönündeki yanıtın, müdahale etmemenin ahlaki açıdan daha güvenli olduğunu düşündüğüne işaret ediyor. Sonraki senaryolarda bu tutumun ne ölçüde tutarlı kaldığını göreceğiz.';
+          yorum = `Casey’nin treni yönlendirmemesi gerektiği yönündeki yanıtın, müdahale etmemenin ahlaki açıdan daha güvenli olduğunu düşündüğüne işaret ediyor. Sonraki senaryolarda bu tutumun ne ölçüde tutarlı kaldığını göreceğiz.`;
         }
         document.getElementById('yorum-1-hayir-metin').textContent = yorum;
         document.getElementById('yorum-1-hayir').style.display = 'block';
@@ -907,19 +1046,19 @@
       const q1evet = answers[1] === 'evet';
       if (val === 'evet') {
         if (q1evet && onOlum) {
-          yorum = 'Bu ilginç bir yanıt. Araştırmalar, çoğu insanın şişman adamı köprüden itmenin doğru olmadığı görüşünde olduğunu gösteriyor. Ancak yanıtın, Casey'nin treni yönlendirmesi gerektiği ve mutluluğu maksimize etme yönünde ahlaki bir zorunluluk bulunduğu yönündeki görüşlerinle tutarlı. Ne yazık ki daha önce olduğu gibi, yanıtın bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor.';
+          yorum = `Bu ilginç bir yanıt. Araştırmalar, çoğu insanın şişman adamı köprüden itmenin doğru olmadığı görüşünde olduğunu gösteriyor. Ancak yanıtın, Casey'nin treni yönlendirmesi gerektiği ve mutluluğu maksimize etme yönünde ahlaki bir zorunluluk bulunduğu yönündeki görüşlerinle tutarlı. Ne yazık ki daha önce olduğu gibi, yanıtın bir başkasının ölümüne yol açmanın her zaman yanlış olduğu iddiasıyla çelişiyor.`;
         } else if (q1evet && !onOlum) {
-          yorum = 'Şişman adamı itme kararın, Casey'nin treni yönlendirmesi gerektiği yönündeki önceki yanıtınla tutarlı. Her iki durumda da daha az can kaybına yol açan seçeneği tercih ettin.';
+          yorum = `Şişman adamı itme kararın, Casey'nin treni yönlendirmesi gerektiği yönündeki önceki yanıtınla tutarlı. Her iki durumda da daha az can kaybına yol açan seçeneği tercih ettin.`;
         } else if (!q1evet) {
-          yorum = 'Treni yönlendirmeyi reddedip şişman adamı itmeyi kabul etmen ilginç bir çelişki ortaya koyuyor. Her iki senaryoda da matematiksel sonuç aynı: 1 ölüm, 5 kurtuluş. Peki bu iki durum arasında seni farklı bir karar almaya yönelten neydi?';
+          yorum = `Treni yönlendirmeyi reddedip şişman adamı itmeyi kabul etmen ilginç bir çelişki ortaya koyuyor. Her iki senaryoda da matematiksel sonuç aynı: 1 ölüm, 5 kurtuluş. Peki bu iki durum arasında seni farklı bir karar almaya yönelten neydi?`;
         } else {
-          yorum = 'Şişman adamı itme kararın, daha fazla insanı kurtarmak için bir kişinin hayatını feda etmeye razı olduğunu gösteriyor. Bu tutumun sonraki sorularla olan ilişkisine bakacağız.';
+          yorum = `Şişman adamı itme kararın, daha fazla insanı kurtarmak için bir kişinin hayatını feda etmeye razı olduğunu gösteriyor. Bu tutumun sonraki sorularla olan ilişkisine bakacağız.`;
         }
       } else {
         if (q1evet) {
-          yorum = 'Treni yönlendirmeyi kabul edip şişman adamı itmemeyi seçmen dikkat çekici. Her iki durumda da matematiksel sonuç aynı olmasına karşın farklı kararlar aldın. Pek çok insan bu ikilem karşısında aynı tepkiyi veriyor: Doğrudan fiziksel temas içeren bir eylemi gerçekleştirmek, bir kolu çevirmekten çok farklı hissettiriyor.';
+          yorum = `Treni yönlendirmeyi kabul edip şişman adamı itmemeyi seçmen dikkat çekici. Her iki durumda da matematiksel sonuç aynı olmasına karşın farklı kararlar aldın. Pek çok insan bu ikilem karşısında aynı tepkiyi veriyor: Doğrudan fiziksel temas içeren bir eylemi gerçekleştirmek, bir kolu çevirmekten çok farklı hissettiriyor.`;
         } else {
-          yorum = 'Şişman adamı itmeme kararın önceki yanıtınla tutarlı; her iki durumda da aktif müdahaleden kaçındın. Bu tutumun sonraki sorularda da sürdürülüp sürdürülmediğini göreceğiz.';
+          yorum = `Şişman adamı itmeme kararın önceki yanıtınla tutarlı; her iki durumda da aktif müdahaleden kaçındın. Bu tutumun sonraki sorularda da sürdürülüp sürdürülmediğini göreceğiz.`;
         }
       }
       document.getElementById('yorum-2-metin').textContent = yorum;
@@ -929,15 +1068,15 @@
       const q2evet = answers[2] === 'evet';
       if (val === 'evet') {
         if (q2evet) {
-          yorum = 'Sabotajcıyı itme kararın, masum şişman adamı da itmen gerektiği yönündeki önceki yanıtın göz önüne alındığında şaşırtıcı değil. Ancak yanıtlarında hâlâ bir tutarsızlık var: Bir başkasının ölümüne yol açmanın her zaman yanlış olduğunu önceden iddia ettiğin düşünüldüğünde, bu kararın o inançla ne ölçüde örtüştüğü belirsizliğini koruyor.';
+          yorum = `Sabotajcıyı itme kararın, masum şişman adamı da itmen gerektiği yönündeki önceki yanıtın göz önüne alındığında şaşırtıcı değil. Ancak yanıtlarında hâlâ bir tutarsızlık var: Bir başkasının ölümüne yol açmanın her zaman yanlış olduğunu önceden iddia ettiğin düşünüldüğünde, bu kararın o inançla ne ölçüde örtüştüğü belirsizliğini koruyor.`;
         } else {
-          yorum = 'Masum şişman adamı itmeyip sabotajcıyı itmeyi seçmen, ahlaki sorumluluğun kurbanın davranışından etkilendiğini düşündüğüne işaret ediyor. Kendi felaketine zemin hazırlayan birinin hayatı, masum birinin hayatından daha mı az değerli?';
+          yorum = `Masum şişman adamı itmeyip sabotajcıyı itmeyi seçmen, ahlaki sorumluluğun kurbanın davranışından etkilendiğini düşündüğüne işaret ediyor. Kendi felaketine zemin hazırlayan birinin hayatı, masum birinin hayatından daha mı az değerli?`;
         }
       } else {
         if (q2evet) {
-          yorum = 'Masum şişman adamı iterken sabotajcıyı itmemeyi seçmen ilginç bir ayrım ortaya koyuyor. Sabotajcının suçluluğu onu kurtarılmaya daha mı layık kılıyor, yoksa başka bir etken mi devreye giriyor?';
+          yorum = `Masum şişman adamı iterken sabotajcıyı itmemeyi seçmen ilginç bir ayrım ortaya koyuyor. Sabotajcının suçluluğu onu kurtarılmaya daha mı layık kılıyor, yoksa başka bir etken mi devreye giriyor?`;
         } else {
-          yorum = 'Hem masum adamı hem de sabotajcıyı itmemeyi seçmen tutarlı bir tablo çiziyor: Sonuç ne olursa olsun, birini doğrudan araç olarak kullanmayı reddediyorsun.';
+          yorum = `Hem masum adamı hem de sabotajcıyı itmemeyi seçmen tutarlı bir tablo çiziyor: Sonuç ne olursa olsun, birini doğrudan araç olarak kullanmayı reddediyorsun.`;
         }
       }
       document.getElementById('yorum-3-metin').textContent = yorum;
@@ -951,15 +1090,86 @@
 
   function showResult() {
     updateProgress(4);
-    buildResult();
-    showScreen('result');
+    buildAnaliz1();
+    showScreen('result-1');
+    setTimeout(animateSkorBars1, 300);
+  }
 
-    // Animate stat bars
-    setTimeout(() => {
-      document.querySelectorAll('.stat-bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.pct + '%';
-      });
-    }, 300);
+  function calcSkor() {
+    // Tutarlılık skoru: ön sorularla deney cevapları ne kadar örtüşüyor
+    let puan = 0;
+    let toplam = 4;
+    const q1 = answers[1] === 'evet';
+    const q2 = answers[2] === 'evet';
+    const q3 = answers[3] === 'evet';
+    const q4 = answers[4] === 'evet';
+    const onMutluluk = preAnswers[2] === 'evet';
+    const onIskence = preAnswers[1] === 'evet';
+    const onOlum = preAnswers[3] === 'evet';
+    const onKurtarma = preAnswers[4] === 'evet';
+
+    // q1 ve q2 tutarlı mı? (ikisi de aynı)
+    if (q1 === q2) puan++;
+    // q2 ve q3 tutarlı mı?
+    if (q2 === q3 || q3) puan++;
+    // işkence ön sorusuyla q4 tutarlı mı?
+    if ((onIskence && !q4) || (!onIskence && q4)) puan++;
+    else puan += 0.5;
+    // mutluluk ön sorusuyla q1 tutarlı mı?
+    if ((onMutluluk && q1) || (!onMutluluk)) puan++;
+
+    return Math.round((puan / toplam) * 100);
+  }
+
+  function buildAnaliz1() {
+    const skor = calcSkor();
+    const ortalamaIyi = skor >= 65;
+    document.getElementById('analiz1-metin1').textContent =
+      `Tutarlılık skorunun ${skor}% olduğunu belirtmek gerekir. Bu, ortalamanın ${ortalamaIyi ? 'üzerinde' : 'altında'} bir sonuçtur (yüksek olan daha iyidir) — ortalama skor %65'tir.`;
+    document.getElementById('analiz1-metin2').textContent = ortalamaIyi
+      ? `Bu testte ortalamanın üzerinde bir performans sergilemiş olsan da, ahlak konusunda çoğu insanın pek de net düşünmediği gerçeğini göz önünde bulundurarak rahatlamak için henüz erken. Daha fazla analiz için bir sonraki sayfaya geçmeyi öneriyoruz.`
+      : `Bu testteki düşük performansın göz önüne alındığında, ahlak hakkında nasıl düşündüğünü gözden geçirmek için biraz zaman ayırmak isteyebilirsin. Ancak buna girişmeden önce bir sonraki analiz sayfasına bakmanı öneriyoruz.`;
+  }
+
+  function animateSkorBars1() {
+    const skor = calcSkor();
+    const bar = document.getElementById('skor-bar-sen');
+    const pct = document.getElementById('skor-pct-sen');
+    if (bar) { bar.style.height = skor + '%'; }
+    if (pct) { pct.textContent = skor + '%'; }
+  }
+
+  function animateSkorBars2() {
+    // nothing needed here, chart bars animate on screen-result-2
+  }
+
+  function animateChartBars() {
+    document.querySelectorAll('.chart-bar').forEach(bar => {
+      const pct = bar.dataset.pct;
+      if (pct) bar.style.height = pct + '%';
+    });
+  }
+
+  function buildSonucTablo() {
+    const sorular = [
+      ['İşkence her zaman ahlaken yanlış mı?', preAnswers[1]],
+      ['Ahlak mutluluğu maksimize etmekle mi belirlenir?', preAnswers[2]],
+      ['Birinin ölümüne yol açmak her zaman yanlış mı?', preAnswers[3]],
+      ['Masum hayatları kurtarmak zorunluluk mu?', preAnswers[4]],
+      ['Casey Jones treni yönlendirmeli mi?', answers[1]],
+      ['Şişman adam itilmeli mi?', answers[2]],
+      ['Sabotajcı itilmeli mi?', answers[3]],
+      ['Şişman adama işkence edilmeli mi?', answers[4]],
+    ];
+    const tbody = document.getElementById('sonuc-tablo-body');
+    if (!tbody) return;
+    tbody.innerHTML = sorular.map(([soru, cevap], i) => {
+      const ayrac = i === 3 ? '<tr><td colspan="2" style="padding:0.3rem;background:var(--border)"></td></tr>' : '';
+      return ayrac + `<tr><td>${soru}</td><td>${cevap === 'evet' ? 'Evet' : 'Hayır'}</td></tr>`;
+    }).join('');
+    const skor = calcSkor();
+    const skorEl = document.getElementById('skor-final-pct');
+    if (skorEl) skorEl.textContent = skor + '%';
   }
 
   function buildResult() {
@@ -1075,15 +1285,195 @@
   function restart() {
     Object.keys(answers).forEach(k => delete answers[k]);
     Object.keys(preAnswers).forEach(k => delete preAnswers[k]);
-    // Reset yorum screens
     ['yorum-1-evet','yorum-1-hayir'].forEach(id => {
       const el = document.getElementById(id);
       if(el) el.style.display = 'none';
     });
+    // Reset chart bars
+    document.querySelectorAll('.chart-bar, .skor-bar-fill').forEach(b => b.style.height = '0');
     updateProgress(0);
     showScreen('intro');
   }
 </script>
 
 </body>
-</html>
+</html>  <!-- SCREEN 5: ANALİZ 1 - TUTARLILIK -->
+  <div class="screen" id="screen-result-1">
+    <div class="analiz-step">Adım 1 / 4 &nbsp;<span class="analiz-pct">25%</span></div>
+    <div class="analiz-progress"><div class="analiz-progress-fill" style="width:25%"></div></div>
+
+    <h2 class="analiz-title">Tutarlılık Meselesi</h2>
+    <p class="analiz-sub">Analiz 1 / 4</p>
+
+    <div class="analiz-grid">
+      <div class="skor-chart">
+        <p class="skor-label">Tutarlılık Skorun</p>
+        <div class="skor-bars">
+          <div class="skor-bar-wrap">
+            <div class="skor-bar-fill" id="skor-bar-sen" style="background:#4ade80"></div>
+            <div class="skor-bar-pct" id="skor-pct-sen">—</div>
+            <div class="skor-bar-text">Sen</div>
+          </div>
+          <div class="skor-bar-wrap">
+            <div class="skor-bar-fill" style="background:#9ca3af;height:65%"></div>
+            <div class="skor-bar-pct">65%</div>
+            <div class="skor-bar-text">Ortalama</div>
+          </div>
+        </div>
+      </div>
+      <div class="analiz-text-block">
+        <p id="analiz1-metin1" class="analiz-p"></p>
+        <p class="analiz-p">Ahlaki seçimlerin az sayıda tutarlı biçimde uygulanan ahlaki ilke tarafından yönetilmesinin iyi bir şey olduğu düşünülür. Bu durum geçerli değilse, ahlaki seçimlerin özünde keyfi olduğuna, yani sezginin ya da anlık kararların bir sonucu olduğuna dair kaygı doğar. Örneğin, ilk senaryoda treni yönlendirmenin doğru olduğunu düşünüyorsanız, bunun sebebinin insan mutluluğunu en üst düzeye çıkarmanın en iyi yolu olması, ancak köprüdeki şişman adam söz konusu olduğunda bu gerekçenin geçerli olmadığını düşünüyorsanız, buradaki sorun şudur: İki senaryo arasında ahlaki açıdan belirleyici farklılıkları tespit edemiyorsanız, gerekçenin ilk durumda ne işe yaradığı belirsizleşir. Kısaca söylemek gerekirse, bu gerekçe treni yönlendirmenin doğru olduğu yönündeki ahlaki yargı için ne zorunlu ne de yeterli görünmektedir.</p>
+        <p id="analiz1-metin2" class="analiz-p"></p>
+      </div>
+    </div>
+
+    <button class="btn-primary" style="margin-top:2rem" onclick="showScreen('result-2');animateSkorBars2()">Analiz 2: Tramvay Problemi →</button>
+  </div>
+
+  <!-- SCREEN 6: ANALİZ 2 - TRAMVAY PROBLEMİ -->
+  <div class="screen" id="screen-result-2">
+    <div class="analiz-step">Adım 2 / 4 &nbsp;<span class="analiz-pct">50%</span></div>
+    <div class="analiz-progress"><div class="analiz-progress-fill" style="width:50%"></div></div>
+
+    <h2 class="analiz-title">Tramvay Problemi</h2>
+    <p class="analiz-sub">Analiz 2 / 4</p>
+
+    <p class="analiz-p">Bu etkinlikte yer alan senaryolar, bir kişinin hayatına son vermenin, başka daha fazla sayıda insanın hayatını kurtarmak amacıyla haklı görülüp görülemeyeceğine dair birbirine zıt sezgileri ortaya çıkarmak üzere tasarlanmıştır.</p>
+    <p class="analiz-p">Burada ilginç olan, bunun ahlaki düşüncedeki sonuçsalcı yaklaşımlar hakkında bize ne söylediğidir. Örneğin, doğrudan faydacılık, etkilenen tüm insanların toplam mutluluğunu en üst düzeye çıkardığı ölçüde bir eylemin ahlaki açıdan doğru olduğunu savunur; bu da aşağıdaki soruların tümüne olumlu yanıt verilmesini gerektirir. Ancak önceki araştırmalar, böyle bir uzlaşının pek mümkün olmadığını ortaya koymaktadır. Özellikle, çok az kişi beş kişinin hayatını kurtarmak için şişman adamın köprüden itilmesi gerektiğini düşünmektedir. Bu seçeneğin pek çok kişi tarafından bu denli sezgiye aykırı bulunması, doğrudan faydacı düşünce için ciddi bir meydan okuma oluşturmaktadır.</p>
+    <p class="analiz-p" style="margin-bottom:2rem">Aşağıdaki grafikler, bugüne kadar dört senaryoya verilen yanıtları göstermektedir.</p>
+
+    <div class="chart-grid">
+      <div class="bar-chart-block">
+        <p class="chart-title">Treni Yönlendir?</p>
+        <div class="chart-bars">
+          <div class="chart-bar-wrap">
+            <div class="chart-bar evet-bar" data-pct="84"></div>
+            <div class="chart-bar-pct">84%</div>
+            <div class="chart-bar-label">Evet</div>
+          </div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar hayir-bar" data-pct="16"></div>
+            <div class="chart-bar-pct">16%</div>
+            <div class="chart-bar-label">Hayır</div>
+          </div>
+        </div>
+      </div>
+      <div class="bar-chart-block">
+        <p class="chart-title">Şişman Adamı İt?</p>
+        <div class="chart-bars">
+          <div class="chart-bar-wrap">
+            <div class="chart-bar evet-bar" data-pct="38"></div>
+            <div class="chart-bar-pct">38%</div>
+            <div class="chart-bar-label">Evet</div>
+          </div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar hayir-bar" data-pct="62"></div>
+            <div class="chart-bar-pct">62%</div>
+            <div class="chart-bar-label">Hayır</div>
+          </div>
+        </div>
+      </div>
+      <div class="bar-chart-block">
+        <p class="chart-title">Sabotajcıyı İt?</p>
+        <div class="chart-bars">
+          <div class="chart-bar-wrap">
+            <div class="chart-bar evet-bar" data-pct="78"></div>
+            <div class="chart-bar-pct">78%</div>
+            <div class="chart-bar-label">Evet</div>
+          </div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar hayir-bar" data-pct="22"></div>
+            <div class="chart-bar-pct">22%</div>
+            <div class="chart-bar-label">Hayır</div>
+          </div>
+        </div>
+      </div>
+      <div class="bar-chart-block">
+        <p class="chart-title">İşkence Et?</p>
+        <div class="chart-bars">
+          <div class="chart-bar-wrap">
+            <div class="chart-bar evet-bar" data-pct="82"></div>
+            <div class="chart-bar-pct">82%</div>
+            <div class="chart-bar-label">Evet</div>
+          </div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar hayir-bar" data-pct="18"></div>
+            <div class="chart-bar-pct">18%</div>
+            <div class="chart-bar-label">Hayır</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" style="margin-top:2rem" onclick="showScreen('result-3');animateChartBars()">Analiz 3: Şişman Adam Meselesi →</button>
+  </div>
+
+  <!-- SCREEN 7: ANALİZ 3 - ŞİŞMAN ADAM -->
+  <div class="screen" id="screen-result-3">
+    <div class="analiz-step">Adım 3 / 4 &nbsp;<span class="analiz-pct">75%</span></div>
+    <div class="analiz-progress"><div class="analiz-progress-fill" style="width:75%"></div></div>
+
+    <h2 class="analiz-title">Şişman Adam Yüzünden mi?</h2>
+    <p class="analiz-sub">Analiz 3 / 4</p>
+
+    <p class="analiz-p" style="font-style:italic;color:var(--muted)">Bir Önyargı Meselesi</p>
+
+    <p class="analiz-p">Yıllar önce, "Şişman Adamı Öldürmeli misin?" adlı deney yayına girmeden kısa bir süre önce, geri bildirim almak umuduyla varlığından profesyonel bir felsefe e-posta listesinde söz ettik. Gelen yanıtlar arasında şu küçük mesaj da vardı:</p>
+
+    <div class="quote-block">
+      <p>"Bu deneyi her zaman rahatsız edici bulduğumu söylemeliyim. Feda edilecek kişinin 'şişman adam' ya da 'çok şişman adam' olması gerektiğine dair deneyin mantığında hiçbir gerekçe yok. Öldürülen kişinin şişman olmasının bir şekilde farklı olduğuna dair açık bir alt metin var.</p>
+      <p style="margin-top:1rem">Deneyin bazı versiyonlarının bu önyargıyı gidererek yalnızca 'bir kişi' ifadesini kullandığını memnuniyetle gördüm. Ancak bu tatsız hikayenin açıkça önyargılı, şişmanlık karşıtı biçimiyle sürdürülmesi üzücü. Prof. Foot'un deneyi bu biçimde tasarlamış olması elbette bir mazeret sayılamaz."</p>
+    </div>
+
+    <p class="analiz-p">Bu konuda söylenecek birkaç şey var. Birincisi, kişinin yalnızca "biri" olarak tanımlanması doğru değildir; çünkü bu durum hemen öz-fedakarlık ihtimalini gündeme getirir (yani neden başkasını itmek yerine kendini köprüden atmazsın?). İkincisi, şişman adam varyasyonunu Philippa Foot değil, Judith Jarvis Thomson geliştirmiştir. Üçüncüsü ise şişman bir adamı öldürmenin bir erkeği öldürmekten bir şekilde farklı olduğuna dair açık bir alt metin bulunmamaktadır; üstelik şişman adam varyasyonu, onu köprüden atmanın ahlaki açıdan meşru olmadığı sezgisini uyandırmak amacıyla tasarlanmıştır.</p>
+
+    <p class="analiz-p" style="font-style:italic;color:var(--muted);margin-top:1.5rem">Kanıtlar Ne Gösteriyor?</p>
+
+    <p class="analiz-p">Tüm bunlarla birlikte, şişmanın durumu gerçekten de olası bir karıştırıcı değişken olabilir; başka bir deyişle, eğer biri "şişman karşıtı" ise bu durum, o kişinin şişman adam senaryolarına verdiği yanıtı etkileyebilir. Peki kanıtlar ne gösteriyor?</p>
+
+    <p class="analiz-p">Kesin bir şey söylemek mümkün olmasa da, elde edilen verilerin şişmanın karıştırıcı bir değişken olduğu durumda bile bunun etkisinin büyük olmadığını gösterdiği söylenebilir. Faydacı görüşü benimseyenlerin şişman adamı köprüden atmayı çok daha fazla onaylaması, bunun şişmanlık karşıtlığından değil, faydacı inançlarından kaynaklandığına işaret etmektedir.</p>
+
+    <button class="btn-primary" style="margin-top:2rem" onclick="showScreen('result-4');buildSonucTablo()">Analiz 4: Genel Sonuçlar →</button>
+  </div>
+
+  <!-- SCREEN 8: ANALİZ 4 - GENEL SONUÇLAR -->
+  <div class="screen" id="screen-result-4">
+    <div class="analiz-step">Adım 4 / 4 &nbsp;<span class="analiz-pct">100%</span></div>
+    <div class="analiz-progress"><div class="analiz-progress-fill" style="width:100%"></div></div>
+
+    <h2 class="analiz-title">Genel Sonuçlar</h2>
+    <p class="analiz-sub">Analiz 4 / 4</p>
+
+    <p class="analiz-p"><em>Bu etkinlik şimdiye kadar 8.342 kişi tarafından tamamlandı.</em></p>
+
+    <h3 class="analiz-section-title">Senin Yanıtların</h3>
+    <table class="sonuc-tablo">
+      <thead><tr><th>Soru</th><th>Cevabın</th></tr></thead>
+      <tbody id="sonuc-tablo-body"></tbody>
+    </table>
+
+    <h3 class="analiz-section-title" style="margin-top:2rem">Genel Yanıtlar</h3>
+    <table class="sonuc-tablo">
+      <thead><tr><th>Soru</th><th>Evet</th><th>Hayır</th></tr></thead>
+      <tbody>
+        <tr><td>Casey Jones treni yönlendirmeli mi?</td><td>84%</td><td>16%</td></tr>
+        <tr><td>Şişman adam köprüden itilmeli mi?</td><td>38%</td><td>62%</td></tr>
+        <tr><td>Sabotajcı köprüden itilmeli mi?</td><td>78%</td><td>22%</td></tr>
+        <tr><td>Şişman adama işkence edilmeli mi?</td><td>82%</td><td>18%</td></tr>
+        <tr><td colspan="2"><em>Toplam yanıt:</em></td><td>8.342</td></tr>
+      </tbody>
+    </table>
+
+    <div class="skor-final-box" id="skor-final-box">
+      <p>Tutarlılık skorun: <strong id="skor-final-pct">—</strong></p>
+      <p>Ortalama tutarlılık skoru: <strong>65%</strong></p>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn-primary" onclick="restart()">Deneyi Tekrarla</button>
+      <a href="index.html" class="btn-outline">Diğer Deneyleri Gör</a>
+    </div>
+  </div>
+
+</div><!-- /experiment-wrap -->
